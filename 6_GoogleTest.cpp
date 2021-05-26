@@ -105,9 +105,25 @@ TEST(GoogleTest, Sample4) {
 }
 #endif
 
+// JUnit4 - @Ignore
+// JUnit5 - @Disabled
 
+// 5. 테스트 비활성화
+//  - 테스트를 비활성화하기 위해서 주석처리하면,'잊혀진 테스트'가 될 가능성이 높습니다.
+//   : 테스트의 결과에 포함되지 않지만, 유지보수의 대상의 
+//     테스트가 존재한다는 사실을 지속적으로 알려줄 수 있어야 한다.
+//     => TestSuite 이름 또는 TestCase 이름이 DISABLED_ 로 시작하면 비활성화됩니다.
+//     => 비활성화된 테스트도 명령행 인자를 통해서 수행할 수 있습니다.
+//     : ./a.out --gtest_also_run_disabled_tests
+TEST(GoogleTest, DISABLED_Sample5) {
+	FAIL() << "아직 작성 중입니다.";
+}
 
-
+class DISABLED_SampleTest : public testing::Test {};
+TEST_F(DISABLED_SampleTest, Test1) {
+}
+TEST_F(DISABLED_SampleTest, Test2) {
+}
 
 
 
