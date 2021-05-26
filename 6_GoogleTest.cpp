@@ -34,10 +34,10 @@ TEST(GoogleTest, Sample1) {
 	int actual2 = goo();
 	User* user = hoo();
 
-	ASSERT_NE(user, nullptr);
+	ASSERT_NE(user, nullptr); // 사전조건 단언문을통해 테스트 프로그램이 비정상 종료하는 것을 방어합니다.
 	EXPECT_EQ(expected, user->GetAge()) << "Reason User";
 	EXPECT_EQ(expected, actual1) << "Reason 1";
-	EXPECT_EQ(expected, actual2) << "Reason 2";  // 죽은 단언문
+	EXPECT_EQ(expected, actual2) << "Reason 2"; 
 	// ASSERT_EQ(expected, actual1) << "Reason 1";
 	// ASSERT_EQ(expected, actual2) << "Reason 2";  // 죽은 단언문
 }
@@ -145,10 +145,15 @@ TEST_F(CalcTest, Sub) {}
 
 class TerminalTest : public testing::Test {};
 TEST_F(TerminalTest, Connect) {}
-TEST_F(TerminalTest, Disconnec) {}
+TEST_F(TerminalTest, Disconnect) {}
 
-
-
+// 7. 테스트 반복
+// => "변덕스러운 테스트" 를 찾는 목적으로 이용할 수 있습니다.
+//  $ ./a.out --gtest_repeat=N
+int i = 0;
+TEST(GoogleTest, Sample7) {
+	EXPECT_EQ(++i, 1);
+}
 
 
 
