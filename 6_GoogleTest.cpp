@@ -149,10 +149,15 @@ TEST_F(TerminalTest, Disconnect) {}
 
 // 7. 테스트 반복
 // => "변덕스러운 테스트" 를 찾는 목적으로 이용할 수 있습니다.
-//  $ ./a.out --gtest_repeat=N
+//  $ ./a.out --gtest_repeat=N --gtest_break_on_failure
+//
+//  --gtest_break_on_failure: 테스트 실행 중에 실패가 발생하면 프로그램을 비정상 종료합니다.
 int i = 0;
 TEST(GoogleTest, Sample7) {
 	EXPECT_EQ(++i, 1);
+	if (i == 2) {
+		i = 0;
+	}
 }
 
 
