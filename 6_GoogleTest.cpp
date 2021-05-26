@@ -126,6 +126,17 @@ TEST_F(DISABLED_SampleTest, Test2) {
 }
 
 // 6. 테스트 필터 기능을 제공합니다.
+//  $ ./a.out --gtest_filter=CalcTest.*:-CalcTest.Sub
+//  => 테스트의 이름을 테스트의 종류에 따라서 잘 조직화 해놓는 것이 유용합니다.
+
+//  $ ./a.out --gtest_filter=*.P_*
+//  $ ./a.out --gtest_filter=*.N_*
+TEST(HelloTest, P_Add) {}
+TEST(HelloTest, N_Add) {}
+TEST(WorldTest, P_Sub) {}
+TEST(WorldTest, N_Sub) {}
+
+
 class CalcTest : public testing::Test {};
 // CalcTest.Add
 TEST_F(CalcTest, Add) {}
