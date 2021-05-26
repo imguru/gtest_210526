@@ -149,7 +149,7 @@ TEST_F(TerminalTest, Disconnect) {}
 
 // 7. 테스트 반복
 // => "변덕스러운 테스트" 를 찾는 목적으로 이용할 수 있습니다.
-//  $ ./a.out --gtest_repeat=N --gtest_break_on_failure
+//  $ ./a.out --gtest_repeat=N --gtest_break_on_failure --gtest_shuffle
 //
 //  --gtest_break_on_failure: 테스트 실행 중에 실패가 발생하면 프로그램을 비정상 종료합니다.
 int i = 0;
@@ -159,6 +159,27 @@ TEST(GoogleTest, Sample7) {
 		i = 0;
 	}
 }
+
+// 8. 테스트 결과 포맷터(Test Result Formatter)
+//  => 테스트의 결과를 'xml'로 변환할 수 있습니다.
+//  $ ./a.out --gtest_output=xml:/path/output.xml
+
+//  GoogleTest
+//  JUnit       =>  xml  => Excel / CSV .... 
+//  ...
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
