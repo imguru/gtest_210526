@@ -47,7 +47,7 @@ TEST(GoogleTest, Sample1) {
 //    - EXPECT_EQ / EXPECT_NE
 //   const char* 
 //    - EXPECT_STREQ/STRNE          : strcmp
-//    - EXPECT_STRCASEQ/STRCASENE   : strcmpi
+//    - EXPECT_STRCASEQ/STRCASENE   : stricmp(MS) / strcasecmp(POSIX)
 TEST(GoogleTest, Sample2) {
 	std::string s1 = "hello";
 	std::string s2 = "hello";
