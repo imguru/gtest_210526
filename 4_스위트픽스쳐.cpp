@@ -18,24 +18,49 @@ public:
 
 class TerminalTest : public testing::Test {
 protected:
-	Terminal* term;
+	static Terminal* term;
 	
-	TerminalTest(): term(nullptr) {}
+	TerminalTest() {
+		printf("TerminalTest()\n");
+	}
 
-	void SetUp() override {
+	~TerminalTest() {
+		printf("~TerminalTest()\n");
+	}
+
+	static void SetUpTestSuite() {
+		printf("SetUpTestSuite()\n");
 		term = new Terminal;
 		term->Connect();
 	}
 
-	void TearDown() override {
+	static void TearDownTestSuite() {
+		printf("TearDownTestSuite()\n");
 		term->Disconnect();
 		delete term;
 	}
+
+	void SetUp() override {
+		printf("SetUp()\n");
+		// term = new Terminal;
+		// term->Connect();
+	}
+
+	void TearDown() override {
+		printf("TearDown()\n");
+		// term->Disconnect();
+		// delete term;
+	}
 };
 
-// SetUp() / TearDown() - Per Testcase
+// static
+Terminal* TerminalTest::term = nullptr;
+
+
+// SetUp() / TearDown()                 - Per Testcase
+// SetUpTestSuite / TearDownTestSuite   - Per TestSuite
 #if 0
-//---- SetUpTestSuite / SetUpTestCase
+//---- SetUpTestSuite / SetUpTestCase  // static
 TerminalTest* ts = new TerminalTest;
 ts->SetUp();
 ts->LoginTest();
@@ -47,7 +72,7 @@ ts->SetUp();
 ts->LogoutTest();
 ts->TearDown();
 delete ts;
-//---- TearDownTestSuite / TearDownTestCase
+//---- TearDownTestSuite / TearDownTestCase // static
 #endif
 
 
