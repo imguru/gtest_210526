@@ -16,12 +16,15 @@ TEST(SampleTest, Goo) {
 
 }
 
-
+// 아래의 코드는 거의 항상 동일합니다.
+// - libgtest.a 에 main을 포함해서 사용하면 편리합니다.
 // 2. main
+#if 0
 int main(int argc, char** argv) {
 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }
+#endif
 
 // 라이브러리
 // 1. 정적 라이브러리: libgtest.a  => 권장
