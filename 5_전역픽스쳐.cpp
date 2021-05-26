@@ -28,10 +28,10 @@ public:
 testing::Environment* env = testing::AddGlobalTestEnvironment(new TestEnvironment);
 // 프레임워크에 등록하는 모든 객체는 new를 통해 생성되어야 합니다.
 
-
-
-
-
+TEST(SampleTest, foo) {}
+TEST(SampleTest, goo) {}
+TEST(CalcTest, foo) {}
+TEST(CalcTest, goo) {}
 
 
 
