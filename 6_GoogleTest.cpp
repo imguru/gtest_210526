@@ -82,10 +82,12 @@ void IsValidFilename(const std::string& filename) {
 
 // IsValidFilename에 빈문자열을 전달할 경우, invalid_argument 예외가 발생하는지 여부를 검증한다.
 //  - EXPECT_THROW
+//    EXPECT_ANY_THROW
 TEST(GoogleTest, Sample4) {
 	std::string emptyFilename = "";
 
 	EXPECT_THROW(IsValidFilename(emptyFilename), std::invalid_argument);
+	EXPECT_ANY_THROW(IsValidFilename(emptyFilename));
 }
 
 #if 0
