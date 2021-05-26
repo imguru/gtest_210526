@@ -59,6 +59,24 @@ TEST(GoogleTest, Sample2) {
 	EXPECT_STRCASEEQ(s3, s4);
 }
 
+// 3. 부동 소수점
+//   - EXPECT_DOUBLE_EQ / EXPECT_FLOAT_EQ
+//   - EXPECT_NEAR 
+TEST(GoogleTest, Sample3) {
+	double a = 0.7;
+	double b = 0.1 * 7;
+
+	EXPECT_DOUBLE_EQ(a, b); // 4ULP: https://en.wikipedia.org/wiki/Unit_in_the_last_place
+	EXPECT_NEAR(a, b, 0.000000001);
+}
+
+
+
+
+
+
+
+
 
 
 
