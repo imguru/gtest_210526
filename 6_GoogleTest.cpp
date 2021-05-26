@@ -5,8 +5,17 @@
 // 1. Fixture
 // 2. Assertions
 
+struct User {
+	int age;
+
+	User(): age(42) {}
+
+	int GetAge() const { return age; }
+};
+
 int foo() { return 420; }
 int goo() { return 420; }
+User* hoo() { return nullptr; }
 
 // ASSERT_EQ / NE / LT / GT / LE / GE / TRUE / FALSE ...
 // => 단언문이 실패할 경우 이후의 코드를 수행하지 않습니다.
@@ -16,14 +25,23 @@ int goo() { return 420; }
 // EXPECT_EQ / NE / LT / GT / LE / GE / TRUE / FALSE ...
 // => 단언문이 실패할 경우, 테스트의 결과는 실패가 되지만 이후의 코드는 수행됩니다.
 //  : 죽은 단언문 / 중복된 테스트케이스
+
 TEST(GoogleTest, Sample1) {
 	int expected = 42;
 
 	int actual1 = foo();
 	int actual2 = goo();
-	
+	User* user = hoo();
+
+	ASSERT_NE(user, nullptr);
+	EXPECT_EQ(expected, user->GetAge()) << "Reason User";
+
 	EXPECT_EQ(expected, actual1) << "Reason 1";
 	EXPECT_EQ(expected, actual2) << "Reason 2";  // 죽은 단언문
 	// ASSERT_EQ(expected, actual1) << "Reason 1";
 	// ASSERT_EQ(expected, actual2) << "Reason 2";  // 죽은 단언문
 }
+
+
+
+
