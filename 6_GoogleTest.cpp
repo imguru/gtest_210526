@@ -125,6 +125,32 @@ TEST_F(DISABLED_SampleTest, Test1) {
 TEST_F(DISABLED_SampleTest, Test2) {
 }
 
+// 6. 테스트 필터 기능을 제공합니다.
+class CalcTest : public testing::Test {};
+// CalcTest.Add
+TEST_F(CalcTest, Add) {}
+// CalcTest.Sub
+TEST_F(CalcTest, Sub) {}
+
+class TerminalTest : public testing::Test {};
+TEST_F(TerminalTest, Connect) {}
+TEST_F(TerminalTest, Disconnec) {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
