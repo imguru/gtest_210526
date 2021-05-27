@@ -32,8 +32,16 @@ public:
 #include <gtest/gtest.h>
 // User의 Display를 호출하였을 때, 00:00분에 42를 반환하는지 검증하고 싶다. 
 
+class StubTime : public Time {
+public:
+	std::string GetCurrentTime() override {
+		return "00:00";
+	}
+};
+
 TEST(UserTest, Display) {
-	Clock clock;
+	// Clock clock;
+	StubTime clock;
 	User user(&clock);
 
 	EXPECT_EQ(user.Display(), 42);
