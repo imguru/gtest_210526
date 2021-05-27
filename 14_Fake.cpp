@@ -54,6 +54,8 @@ public:
 //       1) 의존 객체가 준비되지 않았을 때
 //       2) 의존 객체가 너무 느려서 느린 테스트가 문제가 발생하였을 때
 //       3) 의존 객체가 사용하기 어려울 때
+//
+//   문제점: 실제 객체와 동작의 괴리가 생길경우, 테스트 결과에 신뢰성이 떨어진다.
 class FakeDatabase : public IDatabase {
 	std::map<std::string, User*> data;
 public:
