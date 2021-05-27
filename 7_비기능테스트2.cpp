@@ -15,6 +15,7 @@
 //      - 조건부 컴파일 
 //      g++ 7_비기능테스트2.cpp -lgtest -L. -I. -pthread -DGTEST_LEAK_TEST
 
+#if 0
 class Image {
 public:
 #ifdef GTEST_LEAK_TEST
@@ -39,6 +40,38 @@ public:
 #ifdef GTEST_LEAK_TEST
 int Image::allocCount = 0;
 #endif
+#endif
+
+#ifdef GTEST_LEAK_TEST
+#define DECLARE_GTEST_LEAK_TEST()			\
+public:										\
+	static int allocCount;					\
+	void* operator new(size_t size) {		\
+		++allocCount;						\
+		return malloc(size);				\
+	}										\
+	void operator delete(void* p, size_t) {	\
+		--allocCount;						\
+		free(p);							\
+	}
+
+#define IMPLEMENT_GTEST_LEAK_TEST(classname)	\
+	int classname::allocCount = 0
+#else
+#define DECLARE_GTEST_LEAK_TEST()
+#define IMPLEMENT_GTEST_LEAK_TEST(classname)
+#endif
+
+class Image {
+public:
+	DECLARE_GTEST_LEAK_TEST()
+
+	void Draw() {
+		printf("Draw image...\n");
+	}
+};
+
+IMPLEMENT_GTEST_LEAK_TEST(Image);
 
 void Draw() {
 	Image* image = new Image;

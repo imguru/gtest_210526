@@ -36,12 +36,12 @@ TEST_F(SampleTest, OpenFile) {
 //  방법 2. 사용자 정의 단언문을 제공합니다.
 //   => 매크로를 만들어봅니다.
 #define EXPECT_TIMEOUT(fn, sec)                           					  \
-	do {               									  					  \
+		do {     															  \
 		time_t startTime = time(nullptr);					 				  \
 		fn;													  				  \
 		time_t duration = time(nullptr) - startTime;          				  \
 		EXPECT_LE(duration, sec) << "시간 초과: " << duration << " 초 걸림";  \
-	} while (0)
+		} while (0)
 
 TEST(SampleTest, OpenFile) {
 	EXPECT_TIMEOUT(OpenFile("a.txt"), 1);
