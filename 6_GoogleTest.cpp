@@ -167,42 +167,17 @@ TEST(GoogleTest, Sample7) {
 //  GoogleTest
 //  JUnit       =>  xml  => Excel / CSV .... 
 //  ...
-//
-//  - Google Test는 json 포맷도 지원합니다.
+//  
+//  Google Test는 json 포맷도 지원합니다.
+//  => 1.10
 
-// 추가적인 정보도 기록할 수 있습니다.
-//  - RecordProperty(key, value);
+//  => xml이나 json에 추가적인 정보도 기록할 수 있습니다.
+//   : RecordProperty("key", "value");
 TEST(GoogleTest, Sample8) {
-	RecordProperty("description", "제대로 프로퍼티가 기록되는지 검증한다.");
+	RecordProperty("description", "제대로 프로퍼티가 기록되는지 검증한다");
 	RecordProperty("cpu", "1.5%");
+	RecordProperty("mem", "15g");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

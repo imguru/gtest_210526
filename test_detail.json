@@ -3,8 +3,8 @@
   "failures": 0,
   "disabled": 3,
   "errors": 0,
-  "timestamp": "2021-05-27T00:09:45Z",
-  "time": "0s",
+  "timestamp": "2021-05-27T00:16:31Z",
+  "time": "0.001s",
   "name": "AllTests",
   "testsuites": [
     {
@@ -13,14 +13,14 @@
       "failures": 0,
       "disabled": 1,
       "errors": 0,
-      "timestamp": "2021-05-27T00:09:45Z",
+      "timestamp": "2021-05-27T00:16:31Z",
       "time": "0s",
       "testsuite": [
         {
           "name": "Sample1",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "GoogleTest"
         },
@@ -28,7 +28,7 @@
           "name": "Sample2",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "GoogleTest"
         },
@@ -36,7 +36,7 @@
           "name": "Sample3",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "GoogleTest"
         },
@@ -44,7 +44,7 @@
           "name": "Sample4",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "GoogleTest"
         },
@@ -60,7 +60,7 @@
           "name": "Sample7",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "GoogleTest"
         },
@@ -68,11 +68,12 @@
           "name": "Sample8",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "GoogleTest",
-          "description": "제대로 프로퍼티가 기록되는지 검증한다.",
-          "cpu": "1.5%"
+          "description": "제대로 프로퍼티가 기록되는지 검증한다",
+          "cpu": "1.5%",
+          "mem": "15g"
         }
       ]
     },
@@ -109,14 +110,14 @@
       "failures": 0,
       "disabled": 0,
       "errors": 0,
-      "timestamp": "2021-05-27T00:09:45Z",
+      "timestamp": "2021-05-27T00:16:31Z",
       "time": "0s",
       "testsuite": [
         {
           "name": "P_Add",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "HelloTest"
         },
@@ -124,7 +125,7 @@
           "name": "N_Add",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "HelloTest"
         }
@@ -136,14 +137,14 @@
       "failures": 0,
       "disabled": 0,
       "errors": 0,
-      "timestamp": "2021-05-27T00:09:45Z",
-      "time": "0s",
+      "timestamp": "2021-05-27T00:16:31Z",
+      "time": "0.001s",
       "testsuite": [
         {
           "name": "P_Sub",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "WorldTest"
         },
@@ -151,7 +152,7 @@
           "name": "N_Sub",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "WorldTest"
         }
@@ -163,14 +164,14 @@
       "failures": 0,
       "disabled": 0,
       "errors": 0,
-      "timestamp": "2021-05-27T00:09:45Z",
+      "timestamp": "2021-05-27T00:16:31Z",
       "time": "0s",
       "testsuite": [
         {
           "name": "Add",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "CalcTest"
         },
@@ -178,7 +179,7 @@
           "name": "Sub",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "CalcTest"
         }
@@ -190,14 +191,14 @@
       "failures": 0,
       "disabled": 0,
       "errors": 0,
-      "timestamp": "2021-05-27T00:09:45Z",
+      "timestamp": "2021-05-27T00:16:31Z",
       "time": "0s",
       "testsuite": [
         {
           "name": "Connect",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "TerminalTest"
         },
@@ -205,7 +206,7 @@
           "name": "Disconnect",
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2021-05-27T00:09:45Z",
+          "timestamp": "2021-05-27T00:16:31Z",
           "time": "0s",
           "classname": "TerminalTest"
         }
