@@ -23,11 +23,15 @@ protected:
 };
 
 // 2. 데이터셋 정의
+//  1.10 - INSTANTIATE_TEST_SUITE_P
+//  이전 - INSTANTIATE_TEST_CASE_P
 using testing::ValuesIn;
+using testing::Values;
 
 static int data[] = { 2, 3, 5, 6, 7, 11, 13, 15, 17, 19, 23 };
 INSTANTIATE_TEST_SUITE_P(PrimeValues, PrimeTest, 
-	ValuesIn(data));
+	// ValuesIn(data));
+	Values(2, 3, 5, 6, 7, 11, 13, 15));
 
 // 3. 테스트케이스
 //      기존: TEST / TEST_F
