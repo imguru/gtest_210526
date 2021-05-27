@@ -63,9 +63,8 @@ public:										\
 #endif
 
 class Image {
-public:
 	DECLARE_GTEST_LEAK_TEST()
-
+public:
 	void Draw() {
 		printf("Draw image...\n");
 	}
