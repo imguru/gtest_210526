@@ -20,6 +20,21 @@ bool IsPrime(int value) {
 // 파라미터화테스트: class PrimeTest : public testing::TestWithParm<InputType>
 class PrimeTest : public testing::TestWithParam<int> {
 protected:
+	void SetUp() override {
+		printf("SetUp()\n");
+	}
+
+	void TearDown() override {
+		printf("TearDown()\n");
+	}
+
+	static void SetUpTestSuite() {
+		printf("SetUpTestSuite()\n");
+	}
+
+	static void TearDownTestSuite() {
+		printf("TearDownTestSuite()\n");
+	}
 };
 
 // 2. 데이터셋 정의
