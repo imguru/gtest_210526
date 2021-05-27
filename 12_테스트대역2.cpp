@@ -1,7 +1,24 @@
-// 12_테스트대역.cpp
+// 12_테스트대역2.cpp
 #include <string>
 
-class FileSystem {
+// Logger가 의존하는 FileSystem을 테스트 대역으로 교체할 수 있어야 합니다.
+//  => 테스트 대역을 적용하기 위해서는 특별한 설계가 필요합니다.
+//  => 느슨한 결합(약한 결합)
+
+//  강한 결합: 협력 객체를 이용할 때, 구체적인 타입에 의존한다.
+//  약한 결합: 협력 객체를 이용할 때, "인터페이스나 추상 클래스 타입"에 의존한다.
+//           => 교체 가능하다.
+//           => 직접 생성하면 안됩니다.
+//              외부에서 생성해서 전달받아야 합니다.
+//              : Dependency Injection(DI)
+
+class IFileSystem {
+public:
+	virtual bool IsValid(const std::string& filename) = 0;
+	virtual ~IFileSystem() {}
+};
+
+class FileSystem : public IFileSystem {
 public:
 	virtual ~FileSystem() {}
 
@@ -24,8 +41,10 @@ public:
 			return false;
 		//------
 
-		FileSystem fs;
-		return fs.IsValid(filename);
+		IFileSystem* fs = new FileSystem;
+		return fs->IsValid(filename);
+		// FileSystem fs;
+		// return fs.IsValid(filename);
 	}
 };
 
