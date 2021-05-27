@@ -11,7 +11,10 @@
 //           => 직접 생성하면 안됩니다.
 //              외부에서 생성해서 전달받아야 합니다.
 //              : Dependency Injection(DI)
-
+//               1) 생성자 주입
+//                 - 협력 객체가 필수적인 경우,
+//               2) 메소드 주입
+//				   - 협력 객체가 필수적이지 않은 경우
 class IFileSystem {
 public:
 	virtual bool IsValid(const std::string& filename) = 0;
@@ -22,7 +25,7 @@ class FileSystem : public IFileSystem {
 public:
 	virtual ~FileSystem() {}
 
-	virtual bool IsValid(const std::string& filename) {
+	bool IsValid(const std::string& filename) override {
 		// ...
 		// 현재의 파일 시스템에서 적합한 이름인지 체크합니다.
 		return false;
@@ -30,7 +33,14 @@ public:
 };
 
 class Logger {
+	IFileSystem* fs;
 public:
+	Logger(IFileSystem* p = nullptr) : fs(p) {
+		// 기존의 사용방법 동일하게 만들어주는 것이 좋습니다.
+		if (fs == nullptr) {
+			fs = new FileSystem;
+		}
+	}
 	// file.log
 	//  => 확장자를 제외한 파일의 이름이 5글자 이상이어야 합니다.
 	bool IsValidLogFilename(const std::string& filename) {
@@ -41,7 +51,7 @@ public:
 			return false;
 		//------
 
-		IFileSystem* fs = new FileSystem;
+		// IFileSystem* fs = new FileSystem;
 		return fs->IsValid(filename);
 		// FileSystem fs;
 		// return fs.IsValid(filename);
@@ -50,9 +60,25 @@ public:
 
 //--------
 #include <gtest/gtest.h>
+
+// Logger logger
+//  : logger ->FileSystem
+
+// TestDoubleFileSystem fs;
+// Logger logger(&fs);
+//  : logger -> TestDoubleFileSystem
+
+class TestDoubleFileSystem : public IFileSystem {
+public:
+	bool IsValid(const std::string& filename) override {
+		return true;
+	}
+};
+
 // 파일의 확장자를 제외한 이름이 5글자 이상일 때 true를 반환하는지 검증한다.
 TEST(LoggerTest, IsValidLogFilename_NameLonggerThan5Chars_ReturnsTrue) {
-	Logger logger;
+	TestDoubleFileSystem fs;
+	Logger logger(&fs);
 	std::string validFilename = "valid_file.log";
 
 	bool actual = logger.IsValidLogFilename(validFilename);
@@ -63,7 +89,8 @@ TEST(LoggerTest, IsValidLogFilename_NameLonggerThan5Chars_ReturnsTrue) {
 
 // 파일의 확장자를 제외한 이름이 5글자 미만일 때 false를 반환하는지 검증한다.
 TEST(LoggerTest, IsValidLogFilename_NameShorterThan5Chars_ReturnsFalse) {
-	Logger logger;
+	TestDoubleFileSystem fs;
+	Logger logger(&fs);
 	std::string invalidFilename = "bad.log";
 	
 	EXPECT_FALSE(logger.IsValidLogFilename(invalidFilename)) << "파일명이 다섯글자 미만일 때";
