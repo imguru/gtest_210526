@@ -11,9 +11,13 @@
 //      - delete p;
 //       1. 소멸자 함수 호출
 //       2. 메모리 해지                                 - operator delete
+//  2) 테스트 코드에서만 이용해야 합니다.
+//      - 조건부 컴파일 
+//      g++ 7_비기능테스트2.cpp -lgtest -L. -I. -pthread -DGTEST_LEAK_TEST
 
 class Image {
 public:
+#ifdef GTEST_LEAK_TEST
 	static int allocCount;
 
 	void* operator new(size_t size) {
@@ -25,13 +29,16 @@ public:
 		--allocCount;
 		free(p);
 	}
+#endif
 
 	void Draw() {
 		printf("Draw image...\n");
 	}
 };
 
+#ifdef GTEST_LEAK_TEST
 int Image::allocCount = 0;
+#endif
 
 void Draw() {
 	Image* image = new Image;
@@ -45,12 +52,16 @@ class ImageTest : public testing::Test {
 protected:
 	int allocCount;
 	void SetUp() override {
+#ifdef GTEST_LEAK_TEST
 		allocCount = Image::allocCount;
+#endif
 	}
 
 	void TearDown() override {
+#ifdef GTEST_LEAK_TEST
 		int diff = Image::allocCount - allocCount;
 		EXPECT_EQ(diff, 0) << diff << " object(s) leaks";
+#endif
 	}
 };
 
