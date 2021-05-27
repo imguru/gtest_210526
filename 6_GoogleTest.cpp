@@ -162,7 +162,7 @@ TEST(GoogleTest, Sample7) {
 
 // 8. 테스트 결과 포맷터(Test Result Formatter)
 //  => 테스트의 결과를 'xml'로 변환할 수 있습니다.
-//  $ ./a.out --gtest_output=xml:/path/output.xml
+//  $ ./a.out --gtest_output=[xml|json]:/path/output.xml
 
 //  GoogleTest
 //  JUnit       =>  xml  => Excel / CSV .... 

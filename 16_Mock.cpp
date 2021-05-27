@@ -65,7 +65,6 @@ public:
 #include <gmock/gmock.h> // Google Mock(Google Test)
 
 // MOCK_METHOD{인자개수}(메소드 이름, 메소드 타입);
-
 class MockDLoggerTarget : public DLoggerTarget {
 public:
 	// void Write(Level level, const std::string& message) override

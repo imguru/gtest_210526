@@ -76,6 +76,7 @@ public:
 // TestDoubleFileSystem fs;
 // Logger logger(&fs);
 //  : logger -> TestDoubleFileSystem
+//   - Test Stub
 class TestDoubleFileSystem : public IFileSystem {
 public:
 	bool IsValid(const std::string& filename) override {

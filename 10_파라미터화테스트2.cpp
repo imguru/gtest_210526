@@ -17,7 +17,7 @@ bool IsPrime(int value) {
 
 // 1. 테스트 스위트 클래스
 //             기존: class PrimeTest : public testing::Test
-// 파라미터화테스트: class PrimeTest : public testing::TestWithParm<InputType>
+// 파라미터화테스트: class PrimeTest : public testing::TestWithParam<InputType>
 class PrimeTest : public testing::TestWithParam<int> {
 protected:
 	void SetUp() override {
