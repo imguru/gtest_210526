@@ -32,7 +32,7 @@ private:
 // ----------
 
 #include <gtest/gtest.h>
-#include "User."
+#include "User.h"
 // private
 //  : FRIEND_TEST를 통해 접근 가능합니다.
 //  => 문제점: SUT가 Google Test에 대한 의존성이 생성됩니다.
