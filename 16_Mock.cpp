@@ -1,4 +1,3 @@
-
 #include <string>
 #include <vector>
 
@@ -36,7 +35,7 @@ public:
 
 	void Write(Level level, const std::string& message) {
 		for (DLoggerTarget* p : targets) {
-			p->Write(level, message);
+		//	p->Write(level, message);
 		}
 	}
 };
@@ -63,65 +62,31 @@ public:
 //      Java: jMock, EasyMock, Mockito, Spock ...
 //       C++: Google Mock
 
-class SpyTarget : public DLoggerTarget {
-	std::vector<std::string> history;
+#include <gmock/gmock.h> // Google Mock(Google Test)
 
-	std::string concat(Level level, const std::string& message) const {
-		static std::string levels[] = {
-			"I", "W", "E",
-		};
-		return levels[level] + "@" + message;
-	}
+// MOCK_METHOD{인자개수}(메소드 이름, 메소드 타입);
 
+class MockDLoggerTarget : public DLoggerTarget {
 public:
-	void Write(Level level, const std::string& message) override {
-		history.push_back(concat(level, message));
-	}
-
-	bool IsReceived(Level level, const std::string& message) const {
-		return std::find(history.begin(), history.end(), concat(level, message)) != history.end();
-	}
+	// void Write(Level level, const std::string& message) override
+	MOCK_METHOD2(Write, void(Level level, const std::string& message));
 };
 
 // DLogger에 2개 이상 Target 등록하고,
 // Write 수행하였을 때, 각 Target에 Write가 제대로 전달되는지 여부를 검증하고 싶다.
 TEST(DLoggerTest, Write) {
+	// Arrange
 	DLogger logger;
-	SpyTarget t1;
-	SpyTarget t2;
+	MockDLoggerTarget t1;
+	MockDLoggerTarget t2;
 	logger.AddTarget(&t1);
 	logger.AddTarget(&t2);
 
+	// EXPECT_CALL이 실제 함수 호출 보다 먼저 작성되어야 합니다.
+	// Assert
+	EXPECT_CALL(t1, Write(INFO, "test_message"));
+	EXPECT_CALL(t2, Write(INFO, "test_message"));
+
+	// Act
 	logger.Write(INFO, "test_message");
-
-	EXPECT_TRUE(t1.IsReceived(INFO, "test_message"));
-	EXPECT_TRUE(t2.IsReceived(INFO, "test_message"));
 }
-
-
-#if 0
-int main() {
-	DLogger logger;
-	FileTarget t1;
-	NetworkTarget t2;
-
-	logger.AddTarget(&t1);
-	logger.AddTarget(&t2);
-
-	logger.Write(INFO, "test_message1");
-	logger.Write(WARN, "test_message2");
-}
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
-
