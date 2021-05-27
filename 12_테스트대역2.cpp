@@ -15,6 +15,15 @@
 //                 - 협력 객체가 필수적인 경우,
 //               2) 메소드 주입
 //				   - 협력 객체가 필수적이지 않은 경우
+//           => 의존성 주입 설계 문제점
+//             : 보일러플레이트
+//              F f;
+//              A a(&f);
+//              B b;
+//              C c;
+//				User user(&a, &b, &c);
+//			=> 의존성 주입에 대한 보일러플레이트를 제거하기 위한 프레임워크를 사용하고 있습니다.
+//			   C++: fruit
 class IFileSystem {
 public:
 	virtual bool IsValid(const std::string& filename) = 0;
@@ -67,7 +76,6 @@ public:
 // TestDoubleFileSystem fs;
 // Logger logger(&fs);
 //  : logger -> TestDoubleFileSystem
-
 class TestDoubleFileSystem : public IFileSystem {
 public:
 	bool IsValid(const std::string& filename) override {
@@ -96,17 +104,13 @@ TEST(LoggerTest, IsValidLogFilename_NameShorterThan5Chars_ReturnsFalse) {
 	EXPECT_FALSE(logger.IsValidLogFilename(invalidFilename)) << "파일명이 다섯글자 미만일 때";
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//-----------
+// Test Double - xUnit Test Pattern
+//  : 이전에는 Mock(모의객체)라고 불렀습니다.
+//
+// 5가지 종류
+// 1. Dummy
+// 2. Stub
+// 3. Fake
+// 4. Spy
+// 5. Mock
