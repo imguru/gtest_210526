@@ -90,3 +90,32 @@ TEST(DLoggerTest, Write) {
 	// Act
 	logger.Write(INFO, "test_message");
 }
+
+// Test Double(테스트 대역)
+//  - 4가지
+//  1. Test Stub
+//    - 특수한 상황을 시뮬레이션 한다.
+//      협력 객체에 대해서는 원하는 결과를 주도록 한다.
+//  2. Fake Object
+//    - 가벼운 테스트 대역을 통해 검증되지 않은 로직을 검증한다.
+//  3. Test Spy
+//    - 관찰할 수 있는 부수효과가 존재하지 않는다.
+//     => 목격한 일을 기록해두었다가, 테스트에서 검증할 수 있도록 하는 테스트 대역
+//  4. Mock Object
+//    - 관찰할 수 있는 부수효과가 존재하지 않는다.
+//    => 모의 객체를 통해 행위 기반 검증을 수행한다.
+
+// Mock Framework => Test double Framework
+//                   : Google Mock을 통해 행위 기반 검증도 수행할 수 있지만, 
+//                     Stub / Fake 등의 목적으로도 사용할 수 있습니다.
+
+
+
+
+
+
+
+
+
+
+
