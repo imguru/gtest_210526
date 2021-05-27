@@ -35,6 +35,7 @@ public:
 	TestEngine(): isStart(false) {}
 
 	void Start() override {
+		Engine::Start();     // 부모의 기능을 수행한다.
 		isStart = true;
 	}
 
@@ -43,6 +44,7 @@ public:
 	}
 };
 
+// Car의 Go가 수행되었을 때, Engine의 Start가 제대로 호출되었는지 여불르 검증하고 싶다.
 TEST(CarTest, Go) {
 	TestEngine engine;
 	Car car(&engine);
@@ -51,8 +53,8 @@ TEST(CarTest, Go) {
 
 	EXPECT_TRUE(engine.IsStart()) << "Car가 Go했을 때";
 }
+
 #if 0
-// Car의 Go가 수행되었을 때, Engine의 Start가 제대로 호출되었는지 여불르 검증하고 싶다.
 TEST(CarTest, Go) {
 	Engine engine;
 	Car car(&engine);
