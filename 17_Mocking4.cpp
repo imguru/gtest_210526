@@ -30,7 +30,7 @@ public:
 class PacketReader {
 public:
 	void ReadPacket(PacketStream* stream, size_t packet_number) {
-		stream->AppendPacket(nullptr);
+		// stream->AppendPacket(nullptr);
 		stream->GetPacket(packet_number);
 	}
 };
@@ -43,6 +43,16 @@ public:
 	MOCK_METHOD(void, AppendPacket, (Packet* new_packet), (override));
 	MOCK_METHOD(const Packet*, GetPacket, (size_t packet_number), (const, override));
 };
+
+TEST(PacketReaderTest, ReadPacket) {
+	MockPacketStream stream;
+	PacketReader reader;
+
+	EXPECT_CALL(stream, AppendPacket);
+	EXPECT_CALL(stream, GetPacket);
+
+	reader.ReadPacket(&stream, 42);
+}
 
 
 #if 0
