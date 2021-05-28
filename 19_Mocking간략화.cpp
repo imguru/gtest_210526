@@ -22,7 +22,7 @@ public:
 class MockLogger : public Logger {
 public:
 	void Send(Level level, const char* dir, const char* filename, int line, const char* message) override {
-		Send(level, dir); // !!!!
+		Send(level, dir); 
 	}
 
 	MOCK_METHOD(void, Send, (Level level, const char* dir));
