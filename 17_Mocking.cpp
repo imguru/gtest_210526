@@ -24,7 +24,7 @@ public:
 // 2. const: Required
 // 3. noexcept: Required
 
-// Type Aliasing
+// Type Aliasing(Typedef)
 using BoolIntPair = std::pair<bool, int>;
 using IntDoubleMap = std::map<int, double>;
 
