@@ -3,7 +3,7 @@
 //  => Assertion의 구문을 가독성있게 표현할 수 있도록 해준다.
 //   "비교 표현의 확장 라이브러리"
 
-// Google Mock은 Hamcrest Style의 단언문을 제공합니다.
+// Google Mock은 Hamcrest Style의 단언문을 제공합니다. => EXPECT_THAT
 #include <gmock/gmock.h>
 
 int GetAge() { return 420; }
@@ -31,7 +31,6 @@ public:
 	std::string GetName() const { return name; }
 	int GetAge() const { return age; }
 //
-
 	FRIEND_TEST(UserTest, Sample2);
 private:
 // Field

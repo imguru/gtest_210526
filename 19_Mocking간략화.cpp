@@ -22,9 +22,10 @@ public:
 class MockLogger : public Logger {
 public:
 	void Send(Level level, const char* dir, const char* filename, int line, const char* message) override {
-		Send(level, dir); 
+		Send(level, dir);  // !!
 	}
 
+	// override X
 	MOCK_METHOD(void, Send, (Level level, const char* dir));
 };
 
@@ -44,11 +45,13 @@ public:
 		(Level level, const char* dir, const char* filename, int line, const char* message), (override));
 };
 
+using testing::_;
 TEST(UserTest, Process) {
 	MockLogger logger;
 	User user;
 
-	EXPECT_CALL(logger, Send(INFO, "users", "process.log", 10, "hello"));
+	// EXPECT_CALL(logger, Send(INFO, "users", "process.log", 10, "hello"));
+	EXPECT_CALL(logger, Send(INFO, "users", _, _, _));
 
 	user.Process(&logger);
 }
