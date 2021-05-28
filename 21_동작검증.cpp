@@ -6,16 +6,20 @@
 // 2. 함수 호출 횟수 + 인자 검증
 // 3. 함수 호출 순서
 
+#include <vector>
+
 class User {
 public:
 	virtual ~User() {}
 
 	virtual void Go(int x, int y) = 0;
+	virtual void Print(const std::vector<int>& numbers) = 0;
 };
 
 class MockUser : public User {
 public:
 	MOCK_METHOD(void, Go, (int x, int y), (override));
+	MOCK_METHOD(void, Print, (const std::vector<int>& numbers), (override));
 };
 
 void Sample1(User* p) {
@@ -70,6 +74,30 @@ TEST(UserTest, Sample2) {
 
 	Sample2(&mock);
 }
+
+void Sample3(User* p) {
+	std::vector<int> v = { 10, 20, 30, 40, 50 };
+	p->Print(v);
+}
+
+using testing::ElementsAreArray;
+using testing::ElementsAre;
+
+TEST(UserTest, Sample3) {
+	MockUser mock;
+
+	// EXPECT_CALL(mock, Print({10, 20, 30, 40, 50})); - Compile error!
+	// Matcher<int> expected_args[] = { Gt(0), Le(25), Gt(20), Eq(40), Lt(90) };
+	// EXPECT_CALL(mock, Print(ElementsAreArray(expected_args)));
+	EXPECT_CALL(mock, Print(ElementsAre(Gt(0), Le(25), Gt(20), Eq(40), Lt(90))));
+
+	Sample3(&mock);
+}
+
+
+
+
+
 
 
 
