@@ -17,6 +17,7 @@ public:
 	}
 };
 
+// template <typename PacketStream>
 class PacketReader {
 public:
 	template <typename PacketStream>
@@ -36,6 +37,7 @@ public:
 
 TEST(PacketReaderTest, ReadPacket) {
 	MockPacketStream stream;
+	// PacketReader<MockPacketStream> reader;
 	PacketReader reader;
 
 	EXPECT_CALL(stream, AppendPacket);
