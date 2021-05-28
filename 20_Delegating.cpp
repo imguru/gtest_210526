@@ -36,6 +36,7 @@ struct AddFunctor {
 	}
 };
 
+// ON_CALL - Stub / Fake
 using testing::Return;
 TEST(CalcTest, Calculate) {
 	MockCalc mock;
