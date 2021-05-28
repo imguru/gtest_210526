@@ -31,8 +31,30 @@ public:
 //  - WillByDefault
 
 // EXPECT_CALL
+//  - WillOnce
 
 using testing::Return;
+
+int Calculate2(Calc* p) {
+	printf("Add: %d\n", p->Add(10, 20));
+	printf("Add: %d\n", p->Add(10, 20));
+	printf("Add: %d\n", p->Add(10, 20));
+	printf("Add: %d\n", p->Add(10, 20));
+}
+
+TEST(CalcTest, Calculate2) {
+	MockCalc mock;
+
+	EXPECT_CALL(mock, Add)
+		.WillOnce(Return(100))
+		.WillOnce(Return(200))
+		.WillOnce(Return(300))
+		.WillOnce(Return(400));
+
+	Calculate2(&mock);
+}
+
+
 TEST(CalcTest, Calculate) {
 	MockCalc mock;
 
