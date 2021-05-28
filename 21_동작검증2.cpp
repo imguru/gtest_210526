@@ -43,18 +43,42 @@ int Calculate2(Calc* p) {
 	printf("Add: %d\n", p->Add(10, 20));
 }
 
+// WillOnce / WillRepeatedly => 횟수 판단
+// 1. EXPECT_CALL(...);       =>    EXPECT_CALL(...).Times(1)
+
+// 2. EXPECT_CALL(...)
+// 		.WillOnce(...)
+// 		.WillOnce(...)
+// 		.WillOnce(...);       =>    EXPECT_CALL(...).Times(3)
+
+// 3. EXPECT_CALL(...)
+// 		.WillRepeatedly(...); =>    EXPECT_CALL(...).Times(AnyNumber())
+
+// 4. EXPECT_CALL(...)
+// 		.WillOnce(...)
+// 		.WillOnce(...)
+// 		.WillOnce(...)
+// 		.WillRepeatedly(...); =>    EXPECT_CALL(...).Times(AtLeast(3));
+
 TEST(CalcTest, Calculate2) {
 	MockCalc mock;
 
+#if 0
 	EXPECT_CALL(mock, Add)
 		.WillOnce(Return(1000))
+		.WillOnce(Return(1000))
+		.WillOnce(Return(1000))
+		.WillOnce(Return(1000))
 		.WillRepeatedly(Return(42));
+#endif
 
-#if 0
+#if 1
+	// Times(AnyNumber())
 	EXPECT_CALL(mock, Add)
-		.WillRepeatedly(Return(1000));
+		.WillRepeatedly(Return(1000))
 #endif
 #if 0
+	// Times(4)
 	EXPECT_CALL(mock, Add)
 		.WillOnce(Return(100))
 		.WillOnce(Return(200))
