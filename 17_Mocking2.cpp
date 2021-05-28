@@ -20,6 +20,7 @@ public:
 
 //--------
 // 1. SUT가 상속 가능한 클래스에 의존하고 있다면, Google Mock을 통해 행위 기반 검증을 수행할 수 있습니다.
+//  => 테스트 전용 하위 클래스
 // 2. 행위 기반 검증 대상 메소드만 Mocking 하면 됩니다.
 
 class MockCalc : public Calc {
