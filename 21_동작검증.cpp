@@ -124,6 +124,55 @@ TEST(UserTest, Sample4) {
 	Sample4(&mock);
 }
 
+class Foo {
+public:
+	virtual ~Foo() {}
+
+	virtual void First() = 0;
+	virtual void Second() = 0;
+	virtual void Third() = 0;
+	virtual void Forth() = 0;
+};
+
+class MockFoo : public Foo {
+public:
+	MOCK_METHOD(void, First, (), (override));
+	MOCK_METHOD(void, Second, (), (override));
+	MOCK_METHOD(void, Third, (), (override));
+	MOCK_METHOD(void, Forth, (), (override));
+};
+
+void Sample5(Foo* p) {
+	p->First();
+	p->Second();
+	p->Third();
+	p->Forth();
+}
+
+// 3. 호출 순서
+//  First -> Second -> Third ->Forth
+//   : InSequence;
+using testing::InSequence;
+TEST(FooTest, Sample5) {
+	MockFoo mock;
+	InSequence seq; // !!!
+
+	EXPECT_CALL(mock, First);
+	EXPECT_CALL(mock, Second);
+	EXPECT_CALL(mock, Third);
+	EXPECT_CALL(mock, Forth);
+
+	Sample5(&mock);
+}
+
+
+
+
+
+
+
+
+
 
 
 
