@@ -167,8 +167,8 @@ TEST(FooTest, Sample5) {
 
 void Sample6(Foo* p) {
 	p->First();
-	p->Second();
 	p->Third();
+	p->Second();
 	p->Forth();
 }
 
@@ -189,41 +189,5 @@ TEST(FooTest, Sample6) {
 	EXPECT_CALL(mock, Third).InSequence(seq2);
 	EXPECT_CALL(mock, Forth).InSequence(seq2);
 
-	Sample5(&mock);
+	Sample6(&mock);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
