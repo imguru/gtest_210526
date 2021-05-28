@@ -35,12 +35,24 @@ public:
 	}
 };
 
+//-------
+#include <gmock/gmock.h>
+
+class MockPacketStream : public PacketStream {
+public:
+	MOCK_METHOD(void, AppendPacket, (Packet* new_packet), (override));
+	MOCK_METHOD(const Packet*, GetPacket, (size_t packet_number), (const, override));
+};
+
+
+#if 0
 int main() {
 	ConcreatePacketStream stream;
 	PacketReader reader;
 	
 	reader.ReadPacket(&stream, 42);
 }
+#endif
 
 
 
