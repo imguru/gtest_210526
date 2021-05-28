@@ -32,6 +32,7 @@ public:
 
 // EXPECT_CALL
 //  - WillOnce
+//  - WillRepeatedly
 
 using testing::Return;
 
@@ -46,10 +47,14 @@ TEST(CalcTest, Calculate2) {
 	MockCalc mock;
 
 	EXPECT_CALL(mock, Add)
+		.WillRepeatedly(Return(1000));
+#if 0
+	EXPECT_CALL(mock, Add)
 		.WillOnce(Return(100))
 		.WillOnce(Return(200))
 		.WillOnce(Return(300))
 		.WillOnce(Return(400));
+#endif
 
 	Calculate2(&mock);
 }
