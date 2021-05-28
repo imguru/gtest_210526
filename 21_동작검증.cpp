@@ -165,6 +165,33 @@ TEST(FooTest, Sample5) {
 	Sample5(&mock);
 }
 
+void Sample6(Foo* p) {
+	p->First();
+	p->Second();
+	p->Third();
+	p->Forth();
+}
+
+// First  -> Second         : seq1
+//        |
+//        |
+//        -> Third -> Forth : seq2
+// : Seqeunce
+
+//  EXPECT_CALL(...).InSequence(seq1, ..)
+using testing::Sequence;
+TEST(FooTest, Sample6) {
+	MockFoo mock;
+	Sequence seq1, seq2;
+
+	EXPECT_CALL(mock, First).InSequence(seq1, seq2);
+	EXPECT_CALL(mock, Second).InSequence(seq1);
+	EXPECT_CALL(mock, Third).InSequence(seq2);
+	EXPECT_CALL(mock, Forth).InSequence(seq2);
+
+	Sample5(&mock);
+}
+
 
 
 
