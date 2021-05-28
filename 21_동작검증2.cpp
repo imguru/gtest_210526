@@ -47,7 +47,13 @@ TEST(CalcTest, Calculate2) {
 	MockCalc mock;
 
 	EXPECT_CALL(mock, Add)
+		.WillOnce(Return(1000))
+		.WillRepeatedly(Return(42));
+
+#if 0
+	EXPECT_CALL(mock, Add)
 		.WillRepeatedly(Return(1000));
+#endif
 #if 0
 	EXPECT_CALL(mock, Add)
 		.WillOnce(Return(100))
