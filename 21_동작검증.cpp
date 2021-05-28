@@ -58,7 +58,9 @@ using testing::Ge;  // >=
 using testing::Le;  // <=
 using testing::AllOf; // &&
 using testing::AnyOf; // ||
+using testing::Not;   // !
 using testing::Matcher;
+
 TEST(UserTest, Sample2) {
 	MockUser mock;
 
@@ -82,6 +84,8 @@ void Sample3(User* p) {
 
 using testing::ElementsAreArray;
 using testing::ElementsAre;
+using testing::UnorderedElementsAreArray;
+using testing::UnorderedElementsAre;
 
 TEST(UserTest, Sample3) {
 	MockUser mock;
@@ -89,10 +93,44 @@ TEST(UserTest, Sample3) {
 	// EXPECT_CALL(mock, Print({10, 20, 30, 40, 50})); - Compile error!
 	// Matcher<int> expected_args[] = { Gt(0), Le(25), Gt(20), Eq(40), Lt(90) };
 	// EXPECT_CALL(mock, Print(ElementsAreArray(expected_args)));
-	EXPECT_CALL(mock, Print(ElementsAre(Gt(0), Le(25), Gt(20), Eq(40), Lt(90))));
+	// EXPECT_CALL(mock, Print(ElementsAre(Gt(0), Le(25), Gt(20), Eq(40), Lt(90))));
+	Matcher<int> expected_args[] = { Le(25), Gt(20), Lt(90), Gt(0), Eq(40) };
+	EXPECT_CALL(mock, Print(UnorderedElementsAreArray(expected_args)));
 
 	Sample3(&mock);
 }
+
+void Sample4(User* p) {
+	p->Go(10, 20);
+	p->Go(10, 20);
+	p->Go(10, 20);
+	p->Go(10, 20);
+}
+
+// Times
+using testing::AtLeast;
+using testing::AtMost;
+using testing::Between;
+using testing::AnyNumber;
+
+TEST(UserTest, Sample4) {
+	MockUser mock;
+
+	// EXPECT_CALL(mock, Go).Times(AtLeast(1));
+	// EXPECT_CALL(mock, Go).Times(AtMost(3));
+	// EXPECT_CALL(mock, Go).Times(Between(1, 4));
+	EXPECT_CALL(mock, Go).Times(AnyNumber());
+
+	Sample4(&mock);
+}
+
+
+
+
+
+
+
+
 
 
 
