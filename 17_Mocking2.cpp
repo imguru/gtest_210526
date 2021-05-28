@@ -26,7 +26,7 @@ class MockCalc : public Calc {
 public:
 	MOCK_METHOD(int, Add, (int times, Element x), (override));
 	// 3. 동일한 이름을 가지는 오버로딩 함수를 가립니다.
-	using Calc::Add;
+	// using Calc::Add;
 };
 
 // EXPECT_CALL에서 사용자 정의 객체에 대한 인자 검증이 필요하다면,
@@ -35,14 +35,20 @@ static bool operator==(const Element& x, const Element& y) {
 	return true;
 }
 
+void Process(Calc* p) {
+	p->Add(Element{});
+	p->Add(100, Element{});
+}
+
 TEST(CalcTest, Add) {
 	MockCalc calc;
 
 	EXPECT_CALL(calc, Add(10, Element{}));
 
-	calc.Add(10, Element{});
+	// calc.Add(10, Element{});
 	// no matching function for call to ‘MockCalc::Add(Element)’
-	calc.Add(Element{});
+	// calc.Add(Element{});
+	Process(&calc);
 }
 
 
