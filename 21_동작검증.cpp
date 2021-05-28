@@ -171,7 +171,6 @@ void Sample6(Foo* p) {
 	p->Second();
 	p->Forth();
 }
-
 // First  -> Second         : seq1
 //        |
 //        |
@@ -191,3 +190,12 @@ TEST(FooTest, Sample6) {
 
 	Sample6(&mock);
 }
+
+// Mock / InSequence / Sequence
+//  => 파괴될 때 판단이 수행됩니다.
+//  => 지역 객체로 관리하는게 편리합니다.
+
+
+
+
+
