@@ -20,7 +20,6 @@ public:
 	MOCK_METHOD(void, Print, (char c), (override));
 };
 
-
 using testing::TypedEq;
 using testing::Matcher;
 using testing::An;
@@ -38,9 +37,9 @@ TEST(PrinterTest, Print) {
 	// EXPECT_CALL(mock, Print(arg2));
 	
 	// 3) An<T>
-	EXPECT_CALL(mock, Print(An<int>()));
-	EXPECT_CALL(mock, Print(An<char>()));
-
+	// EXPECT_CALL(mock, Print(An<int>()));
+	// EXPECT_CALL(mock, Print(An<char>()));
+	
 	Print(&mock);
 }
 
